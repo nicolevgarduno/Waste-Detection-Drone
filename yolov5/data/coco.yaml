@@ -1,0 +1,16 @@
+path: ../tba
+train: images/tba
+val: images/tba
+test: #optional
+
+names:
+  0: chip bag
+  1: cardboard
+  2: wrapper
+  3: styrofoam cup
+  4: glass bottle
+  5: metal
+  6: can
+  7: paper
+
+download: #Later
