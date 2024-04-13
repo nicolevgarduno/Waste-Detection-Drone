@@ -1,0 +1,17 @@
+names:
+- can
+- cardboard
+- cigarette
+- paper
+- plastic
+- trash-zQNu
+nc: 6
+roboflow:
+  license: CC BY 4.0
+  project: personal-trash
+  url: https://universe.roboflow.com/cs-420/personal-trash/dataset/2
+  version: 2
+  workspace: cs-420
+test: ../test/images
+train: Personal-Trash-2/train/images
+val: Personal-Trash-2/valid/images

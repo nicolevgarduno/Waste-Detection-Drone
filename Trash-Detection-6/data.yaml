@@ -1,0 +1,12 @@
+names:
+- Waste
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: trash-detection-1fjjc
+  url: https://universe.roboflow.com/trash-dataset-for-oriented-bounded-box/trash-detection-1fjjc/dataset/6
+  version: 6
+  workspace: trash-dataset-for-oriented-bounded-box
+test: ../test/images
+train: Trash-Detection-6/train/images
+val: Trash-Detection-6/valid/images
