@@ -5,7 +5,10 @@ import time
 def create_csv():
     i = 0
     while True:
-        filename = f"run{i}.csv"
+        folder_path = f"Logs/run{i}"
+        filename = f"Logs/run{i}/run{i}.csv"
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
         if not os.path.isfile(filename):
             break
         i+= 1

@@ -10,7 +10,7 @@ import threading
 
 global img
 
-def detect_objects(drone, filename):
+def detect_objects(drone, filename, image_folder):
     # Online dataset 50 epochs, around 1800 images, 12 hours
     model = torch.hub.load(r'yolov5', 'custom', path=r'./yolov5/runs/train/trash_results2/weights/best.pt', source='local')
 
@@ -35,6 +35,7 @@ def detect_objects(drone, filename):
                 current_time = time.time()
                 print(f"Waste detected, logging into: {filename}")
                 log_csv(filename, current_time, conf)
+                capture_image(drone, current_time, image_folder)
                 time.sleep(1)
         img_show = img_detect.render()
 
@@ -46,5 +47,9 @@ if __name__ == "__main__":
     drone = tello.Tello()
     drone.connect()
     drone.streamon()
+
     filename = create_csv()
-    detect_objects(drone, filename)
+    image_folder = create_run_folders()
+
+
+    detect_objects(drone, filename, image_folder)
