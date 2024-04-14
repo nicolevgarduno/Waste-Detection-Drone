@@ -2,7 +2,7 @@ import tkinter
 from tkinter import *
 import djitellopy as tello
 import cv2
-from Pillow import Image, ImageTK
+from PIL import Image, ImageTk
 
 
 def pilotScreen():
@@ -33,7 +33,7 @@ def pilotScreen():
     # drone initialization
     trashDrone = tello.Tello()
     trashDrone.connect()
-    trashDrone.takeoff()
+    #trashDrone.takeoff()
     trashDrone.streamon()
 
     # pilot screen settings
@@ -67,7 +67,7 @@ def pilotScreen():
         if frame is not None:
             feedRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image = Image.fromarray(frame)
-            image = ImageTK.PhotoImage(image=image)
+            image = ImageTk.PhotoImage(image=image)
             trashFeed.img = image
             trashFeed.create_image(0, 0, anchor = Tk.NW, image = image)
         pilotScreen.after(10, videoFeed)
@@ -84,8 +84,8 @@ def pilotScreen():
 win = Tk(screenName='TrashDrone GUI', baseName=None, className='TrashDrone GUI', useTk=True, sync=False, use=None)
 win.geometry("400x400")
 
-button = Button(win, text='Drone Simulation', width=25, command=test)
+#button = Button(win, text='Drone Simulation', width=25, command=test)
 button1 = Button(win, text='Pilot Drone', width=25, command=pilotScreen)
 button1.pack()
-button.pack()
+#button.pack()
 win.mainloop()
