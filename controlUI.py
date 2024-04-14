@@ -1,35 +1,38 @@
 import tkinter
 from tkinter import *
 import djitellopy as tello
+import cv2
+from Pillow import Image, ImageTK
 
 
 def pilotScreen():
     # drone movement functions
     # movement functions created bc direct implementation into button commmands causes execution on pilotScreen start
-    def pilotPatrol(): # movement functions created bc direct implementation into button commmands causes execution on pilotScreen start
+    def pilotPatrol(): 
         for i in range(4):
-            trashDrone.move_forward(200)
+            trashDrone.move_forward(30)
             trashDrone.rotate_clockwise(90)
     def forward():
-        trashDrone.move_forward(100)
+        trashDrone.move_forward(30)
     def back():
-        trashDrone.move_back(100)
+        trashDrone.move_back(30)
     def left():
-        trashDrone.move_left(100)
+        trashDrone.move_left(30)
     def right():
-        trashDrone.move_right(100)
+        trashDrone.move_right(30)
     def clockwise():
-        trashDrone.rotate_clockwise(45)
+        trashDrone.rotate_clockwise(30)
     def cclockwise():
-        trashDrone.rotate_counter_clockwise(45)
+        trashDrone.rotate_counter_clockwise(30)
     def up():
-        trashDrone.move_up(50)
+        trashDrone.move_up(30)
     def down():
-        trashDrone.move_down(50)
+        trashDrone.move_down(30)
     def land():
         trashDrone.land()
     # drone initialization
     trashDrone = tello.Tello()
+    trashDrone.connect()
     trashDrone.takeoff()
     trashDrone.streamon()
 
@@ -59,6 +62,16 @@ def pilotScreen():
     trashFeed = Canvas(pilotScreen, width = 600, height = 500)
     trashFeed.pack(side = RIGHT)
 
+    def videoFeed():
+        frame = trashDrone.get_frame_read().frame
+        if frame is not None:
+            feedRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image = Image.fromarray(frame)
+            image = ImageTK.PhotoImage(image=image)
+            trashFeed.img = image
+            trashFeed.create_image(0, 0, anchor = Tk.NW, image = image)
+        pilotScreen.after(10, videoFeed)
+    videoFeed()
 
 
 
