@@ -1,4 +1,5 @@
 import djitellopy as tello
+import cv2
 import time
 
 class imageCapture:
@@ -6,5 +7,6 @@ class imageCapture:
         self.drone = drone
         self.time = time
 
-    def capture_image():
-        
+    def capture_image(self):
+        img = self.drone.get_frame_read().frame
+        cv2.imwrite(f'{self.time}.jpg', img)
