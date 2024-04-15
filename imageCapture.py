@@ -17,4 +17,4 @@ def capture_image(drone, time_val, folder):
     formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_val))
     img = drone.get_frame_read().frame
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    cv2.imwrite(f'{folder}/{formatted_time}.jpg', img)
+    cv2.imwrite(f'{folder}/{formatted_time}.jpg', img_rgb)

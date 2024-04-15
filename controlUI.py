@@ -5,36 +5,31 @@ import cv2
 from PIL import Image, ImageTk
 
 
-def pilotScreen():
+def pilotScreen(drone):
     # drone movement functions
     # movement functions created bc direct implementation into button commmands causes execution on pilotScreen start
     def pilotPatrol(): 
-        for i in range(4):
-            trashDrone.move_forward(30)
-            trashDrone.rotate_clockwise(90)
+        for _ in range(4):
+            drone.move_forward(30)
+            drone.rotate_clockwise(90)
     def forward():
-        trashDrone.move_forward(30)
+        drone.move_forward(30)
     def back():
-        trashDrone.move_back(30)
+        drone.move_back(30)
     def left():
-        trashDrone.move_left(30)
+        drone.move_left(30)
     def right():
-        trashDrone.move_right(30)
+        drone.move_right(30)
     def clockwise():
-        trashDrone.rotate_clockwise(30)
+        drone.rotate_clockwise(30)
     def cclockwise():
-        trashDrone.rotate_counter_clockwise(30)
+        drone.rotate_counter_clockwise(30)
     def up():
-        trashDrone.move_up(30)
+        drone.move_up(30)
     def down():
-        trashDrone.move_down(30)
+        drone.move_down(30)
     def land():
-        trashDrone.land()
-    # drone initialization
-    trashDrone = tello.Tello()
-    trashDrone.connect()
-    #trashDrone.takeoff()
-    trashDrone.streamon()
+        drone.land()
 
     # pilot screen settings
     pilotScreen = Tk(screenName='Pilot Drone', baseName=None, className='Drone Simulation', useTk=True, sync=False, use=None)
@@ -57,28 +52,6 @@ def pilotScreen():
     pilot_button7.pack()
     pilot_button8.pack()
     pilot_button5.pack()
-
-    #Video feed setup
-    trashFeed = Canvas(pilotScreen, width = 600, height = 500)
-    trashFeed.pack(side = RIGHT)
-
-    def videoFeed():
-        frame = trashDrone.get_frame_read().frame
-        if frame is not None:
-            feedRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            image = Image.fromarray(frame)
-            image = ImageTk.PhotoImage(image=image)
-            trashFeed.img = image
-            trashFeed.create_image(0, 0, anchor = Tk.NW, image = image)
-        pilotScreen.after(10, videoFeed)
-    videoFeed()
-
-
-
-
-
-
-
 
 #initial window
 win = Tk(screenName='TrashDrone GUI', baseName=None, className='TrashDrone GUI', useTk=True, sync=False, use=None)
