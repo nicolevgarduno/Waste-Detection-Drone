@@ -9,7 +9,7 @@ The personal model was labelled and processed using [Roboflow](https://roboflow.
 
 ## Real-time detection using YOLOv5s
 My custom model was trained on approximately 80 images over 100 epochs with a precision of 64%, using YOLOv5s. Here’s a glimpse of its real-time detection performance::
-!images/model_.gif
+![personal_gif](/images/ours.gif)
 
 The Roboflow dataset contains approximately 1,800 images and was trained for 50 epochs with a batch size of 244 using the YOLOv5s model with a precision of 90%! Here are the results produced by the model:
 ![medium_model_gif](/images/model_.gif)
